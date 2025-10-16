@@ -1,0 +1,13 @@
+<h2>✍️ Create New Post</h2>
+<% if (typeof error !== 'undefined') { %><p style="color:red;"><%= error %></p><% } %>
+<form action="/posts" method="post">
+  <div>
+    <label>Post Title</label>
+    <input name="title" placeholder="Enter an engaging title..." required>
+  </div>
+  <div>
+    <label>Post Content</label>
+    <textarea name="body" rows="10" placeholder="Share your thoughts..." required></textarea>
+  </div>
+  <div><button type="submit">Publish Post</button></div>
+</form>

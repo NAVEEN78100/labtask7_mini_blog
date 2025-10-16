@@ -1,0 +1,14 @@
+<h2>🔐 Login</h2>
+<% if (typeof error !== 'undefined') { %><p style="color:red;"><%= error %></p><% } %>
+<form action="/login" method="post">
+  <div>
+    <label>Email Address</label>
+    <input name="email" type="email" placeholder="Enter your email" required>
+  </div>
+  <div>
+    <label>Password</label>
+    <input name="password" type="password" placeholder="Enter your password" required>
+  </div>
+  <div><button type="submit">Login</button></div>
+</form>
+<p style="margin-top: 1.5rem; text-align: center;">Don't have an account? <a href="/register" style="color: #667eea; font-weight: 600;">Register here</a></p>

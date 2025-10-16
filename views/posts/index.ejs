@@ -1,0 +1,13 @@
+<h2>📚 All Posts</h2>
+<% if (!posts || posts.length === 0) { %>
+  <p>No posts yet. Be the first to share your thoughts! 🚀</p>
+<% } else { %>
+  <ul>
+    <% posts.forEach(post => { %>
+      <li>
+        <a href="/posts/<%= post._id %>"><strong><%= post.title %></strong></a>
+        <small>by <%= post.author ? post.author.username : 'Unknown' %> 👤</small>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>

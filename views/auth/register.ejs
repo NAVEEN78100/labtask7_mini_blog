@@ -1,0 +1,18 @@
+<h2>📝 Register</h2>
+<% if (typeof error !== 'undefined') { %><p style="color:red;"><%= error %></p><% } %>
+<form action="/register" method="post">
+  <div>
+    <label>Username</label>
+    <input name="username" placeholder="Choose a username" required>
+  </div>
+  <div>
+    <label>Email Address</label>
+    <input name="email" type="email" placeholder="Enter your email" required>
+  </div>
+  <div>
+    <label>Password</label>
+    <input name="password" type="password" placeholder="Create a password" required>
+  </div>
+  <div><button type="submit">Create Account</button></div>
+</form>
+<p style="margin-top: 1.5rem; text-align: center;">Already have an account? <a href="/login" style="color: #667eea; font-weight: 600;">Login here</a></p>

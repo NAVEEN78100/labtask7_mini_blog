@@ -1,0 +1,13 @@
+<article>
+  <h2><%= post.title %></h2>
+  <p><small>by <%= post.author ? post.author.username : 'Unknown' %> 👤</small></p>
+  <div style="margin-top: 2rem; line-height: 1.8;"><%= post.body %></div>
+  <% if (currentUser && post.author && (post.author._id || post.author).toString() === currentUser._id) { %>
+    <div class="actions">
+      <a href="/posts/<%= post._id %>/edit" class="btn btn-edit">✏️ Edit Post</a>
+      <form action="/posts/<%= post._id %>?_method=DELETE" method="post">
+        <button type="submit" class="btn-delete">🗑️ Delete Post</button>
+      </form>
+    </div>
+  <% } %>
+</article>

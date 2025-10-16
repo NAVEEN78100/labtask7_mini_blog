@@ -1,0 +1,12 @@
+<h2>✏️ Edit Post</h2>
+<form action="/posts/<%= post._id %>?_method=PUT" method="post">
+  <div>
+    <label>Post Title</label>
+    <input name="title" value="<%= post.title %>" required>
+  </div>
+  <div>
+    <label>Post Content</label>
+    <textarea name="body" rows="10" required><%= post.body %></textarea>
+  </div>
+  <div><button type="submit">💾 Save Changes</button></div>
+</form>
