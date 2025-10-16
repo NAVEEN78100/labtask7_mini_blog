@@ -10,7 +10,9 @@ function ensureAuth(req, res, next) {
 // List posts
 router.get('/posts', async (req, res) => {
   const posts = await Post.find().populate('author', 'username').sort({ createdAt: -1 }).limit(50);
-  res.render('posts/index', { posts });
+  const message = req.session.message;
+  delete req.session.message;
+  res.render('posts/index', { posts, message });
 });
 
 // New form
@@ -29,6 +31,7 @@ router.post('/posts', ensureAuth, async (req, res) => {
     res.render('posts/new', { error: 'Error creating post' });
   }
 });
+
 
 // Show single
 router.get('/posts/:id', async (req, res) => {
@@ -63,6 +66,7 @@ router.delete('/posts/:id', ensureAuth, async (req, res) => {
   if (!post) return res.redirect('/posts');
   if (post.author.toString() !== req.session.user._id) return res.status(403).send('Forbidden');
   await post.remove();
+  req.session.message = 'Post deleted successfully.';
   res.redirect('/posts');
 });
 

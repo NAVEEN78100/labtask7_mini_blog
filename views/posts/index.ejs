@@ -1,4 +1,20 @@
 <h2>📚 All Posts</h2>
+<% if (typeof message !== 'undefined' && message) { %>
+  <div id="deleteModal" class="custom-modal">
+    <div class="custom-modal-content">
+      <span class="custom-modal-close" onclick="document.getElementById('deleteModal').style.display='none'">&times;</span>
+      <div style="font-size:1.2rem; font-weight:600; color:#22c55e; margin-bottom:0.5rem;">✅ <%= message %></div>
+    </div>
+  </div>
+  <script>
+    window.onload = function() {
+      document.getElementById('deleteModal').style.display = 'flex';
+      setTimeout(function() {
+        document.getElementById('deleteModal').style.display = 'none';
+      }, 2500);
+    };
+  </script>
+<% } %>
 <% if (!posts || posts.length === 0) { %>
   <p>No posts yet. Be the first to share your thoughts! 🚀</p>
 <% } else { %>

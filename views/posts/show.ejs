@@ -5,9 +5,33 @@
   <% if (currentUser && post.author && (post.author._id || post.author).toString() === currentUser._id) { %>
     <div class="actions">
       <a href="/posts/<%= post._id %>/edit" class="btn btn-edit">✏️ Edit Post</a>
-      <form action="/posts/<%= post._id %>?_method=DELETE" method="post">
+      <form action="/posts/<%= post._id %>" method="post" onsubmit="return confirmAndDelete(this);">
+        <input type="hidden" name="_method" value="DELETE">
         <button type="submit" class="btn-delete">🗑️ Delete Post</button>
       </form>
     </div>
   <% } %>
 </article>
+
+<script>
+function confirmAndDelete(form) {
+  // Show a custom popup message
+  const modal = document.createElement('div');
+  modal.style.position = 'fixed';
+  modal.style.top = 0;
+  modal.style.left = 0;
+  modal.style.width = '100vw';
+  modal.style.height = '100vh';
+  modal.style.background = 'rgba(30,41,59,0.25)';
+  modal.style.display = 'flex';
+  modal.style.alignItems = 'center';
+  modal.style.justifyContent = 'center';
+  modal.style.zIndex = 9999;
+  modal.innerHTML = `<div style="background:#fff;padding:2rem 2.5rem;border-radius:18px;box-shadow:0 8px 32px rgba(102,126,234,0.18);text-align:center;min-width:280px;font-family:inherit;">
+    <div style='font-size:1.2rem;font-weight:600;color:#22c55e;margin-bottom:0.5rem;'>✅ Post deleted successfully.</div>
+  </div>`;
+  document.body.appendChild(modal);
+  setTimeout(() => { form.submit(); }, 1200);
+  return false;
+}
+</script>
